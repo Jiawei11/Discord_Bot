@@ -17,7 +17,6 @@ bot.on('message', message => {
     if (message.author.bot || !message.content.startsWith(prefix)) {
         return;
     } else {
-        message.channel.sendMessage(message.content);
         switch (message.content.split('?').filter(word => word != '')[0]) {
             case 'ping':
                 message.channel.sendMessage('伺服器延遲為： `' + `${Date.now() - message.createdTimestamp}` + ' ms`');
@@ -27,7 +26,6 @@ bot.on('message', message => {
                 break;
             default:
                 message.channel.sendMessage('Default Message');
-                break;
         }
     }
 });
