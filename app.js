@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 var prefix = '?';
 
 bot.on('ready', () => {
-    console.log('Bot Starting： ' + bot.user.tag);
+    console.log('Discord Bot Ready');
 })
 
 bot.on('message', msg => {
@@ -16,8 +16,13 @@ bot.on('message', msg => {
 bot.on('message', message => {
     if (message.author.bot || !message.content.startsWith(prefix)) {
         return;
-    } else if (message.content.startsWith(prefix + 'ping')) {
-        message.channel.sendMessage('伺服器延遲為： `' + `${Date.now() - message.createdTimestamp}` + ' ms`');
+    } else {
+        switch (message.content.startsWith(prefix)) {
+            case 'ping':
+                message.channel.sendMessage('伺服器延遲為： `' + `${Date.now() - message.createdTimestamp}` + ' ms`');
+            default:
+                message.channel.sendMessage('Default Message');
+        }
     }
 });
 
