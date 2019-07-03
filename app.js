@@ -17,9 +17,12 @@ bot.on('message', message => {
     if (message.author.bot || !message.content.startsWith(prefix)) {
         return;
     } else {
+        message.channel.sendMessage(message.content.split(' ')[1]);
         switch (message.content.startsWith(prefix)) {
             case 'ping':
                 message.channel.sendMessage('伺服器延遲為： `' + `${Date.now() - message.createdTimestamp}` + ' ms`');
+            case 'voice':
+                message.channel.sendMessage('Voice');
             default:
                 message.channel.sendMessage('Default Message');
         }
