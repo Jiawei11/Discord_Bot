@@ -13,7 +13,7 @@ bot.on('message', msg => {
     } else {
         var command = msg.content.split('?').filter(word => word != '')[0];
 
-        // console.log(bot.users.find(item => console.log(item.id)));
+        // console.log(bot.users.find("username", "家偉"));
         switch (command) {
             case 'ping':
                 msg.channel.sendmsg('伺服器延遲為： `' + `${Date.now() - msg.createdTimestamp}` + ' ms`');
