@@ -7,22 +7,25 @@ bot.on('ready', () => {
     console.log('Discord Bot Ready');
 })
 
-bot.on('message', message => {
-    if (message.author.bot || !message.content.startsWith(prefix)) {
+bot.on('message', msg => {
+    if (msg.author.bot || !msg.content.startsWith(prefix)) {
         return;
     } else {
-        var command = message.content.split('?').filter(word => word != '')[0];
+        var command = msg.content.split('?').filter(word => word != '')[0];
 
-
+        // console.log(bot.users.find(item => console.log(item.id)));
         switch (command) {
             case 'ping':
-                message.channel.sendMessage('伺服器延遲為： `' + `${Date.now() - message.createdTimestamp}` + ' ms`');
+                msg.channel.sendmsg('伺服器延遲為： `' + `${Date.now() - msg.createdTimestamp}` + ' ms`');
                 break;
             case 'voice':
-                message.channel.sendMessage('voice ready');
+                msg.channel.sendmsg('voice ready');
+                break;
+            case 'hey':
+                msg.channel.sendMessage('Welcome To This Channel');
                 break;
             default:
-                message.channel.sendMessage('Default Message');
+                msg.channel.sendMessage('Default Message');
         }
     }
 });
