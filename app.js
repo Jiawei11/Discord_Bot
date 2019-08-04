@@ -1,10 +1,11 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
+const ffmpeg = require('ffmpeg');
 const bot = new Discord.Client();
 var prefix = '?';
 
 bot.on('ready', () => {
-    console.log('Discord Bot Ready');
+    console.log(`Logged in as ${bot.user.tag}!`);
 })
 
 bot.on('message', msg => {
@@ -12,17 +13,18 @@ bot.on('message', msg => {
         return;
     } else {
         var command = msg.content.split('?').filter(word => word != '')[0];
-
-        // console.log(bot.users.find("username", "家偉"));
         switch (command) {
             case 'ping':
-                msg.channel.sendmsg('伺服器延遲為： `' + `${Date.now() - msg.createdTimestamp}` + ' ms`');
+                msg.channel.sendMessage('伺服器延遲為： `' + `${Date.now() - msg.createdTimestamp}` + ' ms`');
                 break;
             case 'voice':
-                msg.channel.sendmsg('voice ready');
+                msg.channel.sendMessage('voice ready');
                 break;
             case 'hey':
                 msg.channel.sendMessage('Welcome To This Channel');
+                break;
+            case 'join':
+                bot.channels.find('name', 'music').join();
                 break;
             default:
                 msg.channel.sendMessage('Default Message');
